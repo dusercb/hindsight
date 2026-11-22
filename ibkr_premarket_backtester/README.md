@@ -1,14 +1,10 @@
-# Hindsight
+# Hindsight: detailed guide
 
-A tick-accurate premarket backtester on IBKR data, for a high-of-day first-pullback setup, built so it can't use hindsight.
-
-> **Public snapshot of a private repository.** Included: the backtest engine, its `signal_core` facade, the test suite and CI. Not included: my tuned configuration, cached IBKR data and results. `config.yaml` here holds illustrative values only.
+How the engine qualifies candidates, gates entries, resolves fills and reports results. For an overview, see the [main README](../README.md).
 
 Backtesting/paper-research project for testing a premarket **break of HOD after first pullback** setup on user-supplied ticker/date pairs.
 
 This project **does not place live trades**. It connects to IBKR/TWS or IB Gateway in read-only mode (`ibkr.readonly`, default `true` — now honored by `connect()`, so a read-only session physically rejects order submission) and requests historical bars only.
-
-> **The live bot built on this engine** is [Parity](https://github.com/dusercb/parity). Its porting plan, which classifies every part of this codebase by how it ports to live trading, is kept private.
 
 ## Strategy rules included
 
@@ -91,12 +87,12 @@ ibkr_premarket_backtester/
     models.py
     strategy.py
     reporting.py
-  tests/                      # pytest suite (~14 files, run: python -m pytest tests)
+  tests/                      # pytest suite (run: python -m pytest)
 ```
 
-## Setup in VS Code
+## Setup
 
-1. Open this folder in VS Code.
+1. Open a terminal in this folder.
 2. Create and activate a virtual environment:
 
 ```bash
@@ -208,7 +204,7 @@ Leave both as `null` to test all prices.
 
 ## Loose input formatter
 
-If you send or paste tickers/dates in a rough list, put them in:
+If you have tickers and dates in a rough list, put them in:
 
 ```text
 data/raw_tickers_dates.txt
@@ -234,7 +230,6 @@ python -m premarket_backtester.cli format-input --raw data/raw_tickers_dates.txt
 python -m premarket_backtester.cli backtest --config config.yaml
 ```
 
-Or use the VS Code launch configuration: **Run IBKR Premarket Backtest**.
 
 
 ## Bar size
