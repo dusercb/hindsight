@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.env
+.venv/
+# Generated run artifacts. The old `results/*.csv` globs only matched the top
+# level and left the per-run folders (run_*/ with trade folders, charts, sqlite,
+# html -- ~50k files) tracked. Ignore the whole tree; nothing under results/ is
+# source. Keep the directory itself with a .gitkeep if you want it to exist.
+results/
+data/cache/

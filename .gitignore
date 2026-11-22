@@ -1,0 +1,20 @@
+# Virtual env (recreate from ibkr_premarket_backtester/requirements.txt)
+.venv/
+
+# Python artifacts
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# IBKR historical data cache (7.7GB, machine-local; rebuilt by fetching)
+ibkr_premarket_backtester/data/cache/
+
+# Backtest run outputs (large, reproducible from cache + config)
+ibkr_premarket_backtester/results/
+
+# Claude Code local session state (machine-local)
+.claude/
+
+# Real env files (only .env.example is tracked)
+.env

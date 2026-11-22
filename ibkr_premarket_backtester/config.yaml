@@ -1,0 +1,123 @@
+# Illustrative configuration for the public snapshot.
+# The values I research and trade with are not published: every strategy and
+# sizing number below is a placeholder chosen to exercise the engine, not an edge.
+# config.py documents every key; keys left out here fall back to its defaults.
+
+ibkr:
+  host: 127.0.0.1
+  port: 4002
+  client_id: 7
+  readonly: true
+data:
+  input_csv: data/ticker_dates.csv
+  reference_csv: data/reference_floats.csv
+  cache_dir: data/cache
+  output_dir: results
+  use_cache: true
+  bar_size: 10 secs
+  what_to_show: TRADES
+  use_rth: false
+  tick_request_pause_s: 3.0
+  bar_request_pause_s: 10.0
+  request_timeout_s: 120
+  max_empty_tick_attempts: 3
+  max_empty_bar_attempts: 3
+  wide_duration: 6 D
+session:
+  timezone: America/New_York
+  premarket_start: "04:00"
+  regular_open: "09:30"
+strategy:
+  min_rvol: 5.0
+  rvol_lookback_days: 20
+  rvol_baseline_stat: median
+  rvol_min_history_days: 1
+  min_premarket_gain_pct: 20.0
+  entry_offset: 0.01
+  offset_mode: cents
+  target_offset: 0.2
+  stop_offset: 0.1
+  target_offset_pct: 8.0
+  stop_offset_pct: 4.0
+  stop_mode: offset
+  target_mode: offset
+  target_r_multiple: 2.0
+  chart_timeframe: 10s
+  exit_mode: standard
+  fatgreen_body_min: 0.7
+  trail_partial_at_target: 1.0
+  entry_mode: hod_break
+  dip_reclaim_indicator: ema9
+  require_breakout_close_confirm: false
+  breakout_close_min_frac: 0.667
+  macd_fast: 12
+  macd_slow: 26
+  macd_signal: 9
+  scale_out: false
+  scale_out_sell_pct: 50.0
+  scale_out_step: 0.1
+  scale_out_max_sells: 3
+  scale_out_stop_offset: 0.02
+  rip_anchor: session_low
+  rip_recent_minutes: 5.0
+  max_pullback_retrace_pct: 45.0
+  block_retrace_below_ema9: false
+  block_retrace_below_ema20: false
+  block_retrace_below_vwap: false
+  block_buy_below_vwap: false
+  block_buy_below_ema9: false
+  block_buy_below_ema20: false
+  red_volume_check: total
+  require_red_dip_candle: false
+  min_pullback_cents: 0.05
+  min_pullback_pct: 2.0
+  min_price: 2.0
+  max_price: 20.0
+  min_float: null
+  max_float: null
+  min_premarket_volume: null
+  max_spread_cents: null
+  earliest_entry_time: null
+  latest_entry_time: null
+  first_setup_only: true
+  max_trades_per_day: 1
+  trade_winners_qty: 1
+  continuation_vwap_above_entry_pct: 0.0
+  exit_at_regular_open: true
+  entry_limit_slippage_cents: 0.15
+  order_latency_seconds: 0.1
+  intrabar_policy: ticks
+risk:
+  position_pct_of_equity: 50.0
+  shares: 100
+  fees_per_share: 0.005
+  monthly_fees: 0.0
+  starting_equity: 25000
+  max_pct_of_volume_at_entry: 1.0
+  risk_pct_of_equity: 1.0
+  max_leverage: 1.0
+  size_to_risk: true
+reporting:
+  write_trades_csv: true
+  write_summary_json: true
+  write_sqlite: true
+  write_trade_folders: true
+  write_charts: true
+  write_html_report: true
+  trade_folders_for: setups
+  verbose: true
+monte_carlo:
+  enabled: true
+  iterations: 10000
+  mode: resample
+  random_seed: 7
+  ruin_threshold_pct: 80.0
+blackout:
+  enabled: true
+  skip_weekends: true
+  thanksgiving_week: true
+  recurring_ranges:
+  - 12-20..01-01
+  dates: []
+wedge:
+  enabled: false
